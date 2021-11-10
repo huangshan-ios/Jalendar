@@ -7,14 +7,22 @@
 
 import UIKit
 
-protocol CalendarDelegate {
+public protocol CalendarDelegate {
+    
     func tap(at date: Date, index: ItemViewIndex, point: CGPoint)
+    
     func doubleTap(at date: Date, index: ItemViewIndex, point: CGPoint)
+    
     func longPress(at date: Date, index: ItemViewIndex, point: CGPoint)
+    
 }
 
 extension CalendarDelegate {
+    
     func tap(at date: Date, index: ItemViewIndex, point: CGPoint) {}
+    
     func doubleTap(at date: Date, index: ItemViewIndex, point: CGPoint) {}
+    
     func longPress(at date: Date, index: ItemViewIndex, point: CGPoint) {}
+    
 }

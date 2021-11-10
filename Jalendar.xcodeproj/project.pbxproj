@@ -19,6 +19,9 @@
 		F75E897627384B260065B07B /* CalendarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75E897527384B260065B07B /* CalendarDelegate.swift */; };
 		F75E897827384B600065B07B /* Calendar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75E897727384B600065B07B /* Calendar+Extensions.swift */; };
 		F75E897B27384B960065B07B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75E897A27384B960065B07B /* Constants.swift */; };
+		F7D95772273C32A10055B031 /* WeekdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D95771273C32A10055B031 /* WeekdayView.swift */; };
+		F7D95774273C32BD0055B031 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D95773273C32BD0055B031 /* MonthView.swift */; };
+		F7D95776273C3EA90055B031 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D95775273C3EA90055B031 /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		F75E897527384B260065B07B /* CalendarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDelegate.swift; sourceTree = "<group>"; };
 		F75E897727384B600065B07B /* Calendar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extensions.swift"; sourceTree = "<group>"; };
 		F75E897A27384B960065B07B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F7D95771273C32A10055B031 /* WeekdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayView.swift; sourceTree = "<group>"; };
+		F7D95773273C32BD0055B031 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		F7D95775273C3EA90055B031 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				F75E896D27384A270065B07B /* CalendarView.swift */,
+				F7D95771273C32A10055B031 /* WeekdayView.swift */,
+				F7D95773273C32BD0055B031 /* MonthView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				F75E897727384B600065B07B /* Calendar+Extensions.swift */,
+				F7D95775273C3EA90055B031 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -278,9 +287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7D95774273C32BD0055B031 /* MonthView.swift in Sources */,
 				F75E897B27384B960065B07B /* Constants.swift in Sources */,
+				F7D95772273C32A10055B031 /* WeekdayView.swift in Sources */,
 				F75E896E27384A270065B07B /* CalendarView.swift in Sources */,
 				F75E896A273847180065B07B /* CalendarConfigBuilder.swift in Sources */,
+				F7D95776273C3EA90055B031 /* Date+Extensions.swift in Sources */,
 				F75E897027384A460065B07B /* CalendarDataSource.swift in Sources */,
 				F75E8968273843AB0065B07B /* WeekDay.swift in Sources */,
 				F75E89662738439E0065B07B /* CalendarConfig.swift in Sources */,

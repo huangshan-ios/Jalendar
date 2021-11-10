@@ -11,17 +11,15 @@ public protocol ConfigBuilder {
     
     static func makeBuilder() -> CalendarConfigBuilder
     
-    func enableSelectedView(_ isEnable: Bool) -> CalendarConfigBuilder
+    func showSelectedView(_ isShowing: Bool) -> CalendarConfigBuilder
     
-    func enableEventView(_ isEnable: Bool) -> CalendarConfigBuilder
+    func setCustomizeDateView(_ isCustomize: Bool) -> CalendarConfigBuilder
+    
+    func setSelectDateOfDifferentMonth(_ canSelect: Bool) -> CalendarConfigBuilder
+    
+    func setCustomGesture(_ gestures: [GestureType]) -> CalendarConfigBuilder
         
-    func enableWeekDayView(_ isEnable: Bool) -> CalendarConfigBuilder
-    
-    func enableCustomizeDateView(_ isEnable: Bool) -> CalendarConfigBuilder
-    
-    func enableSelectDateOfDifferentMonth(_ isEnable: Bool) -> CalendarConfigBuilder
-    
-    func setTimeForAnimateDetailView(_ interval: TimeInterval) -> CalendarConfigBuilder
+    func showWeekdayView(_ isShowing: Bool) -> CalendarConfigBuilder
     
     func setStartDayOfWeek(_ weekDay: WeekDay) -> CalendarConfigBuilder
     
@@ -44,43 +42,38 @@ public class CalendarConfigBuilder: ConfigBuilder {
         calendarConfig = config
     }
     
-    public func enableSelectedView(_ isEnable: Bool) -> CalendarConfigBuilder {
-        calendarConfig.isDrawSelectedView = isEnable
+    public func showSelectedView(_ isShowing: Bool) -> CalendarConfigBuilder {
+        calendarConfig.month.isShowSelectedView = isShowing
         return self
     }
     
-    public func enableEventView(_ isEnable: Bool) -> CalendarConfigBuilder {
-        calendarConfig.isDrawEventView = isEnable
+    public func setCustomizeDateView(_ isCustomize: Bool) -> CalendarConfigBuilder {
+        calendarConfig.month.isCustomizeDateView = isCustomize
         return self
     }
     
-    public func enableWeekDayView(_ isEnable: Bool) -> CalendarConfigBuilder {
-        calendarConfig.isDrawWeekDayView = isEnable
+    public func setSelectDateOfDifferentMonth(_ canSelect: Bool) -> CalendarConfigBuilder {
+        calendarConfig.month.canSelectedDifferrentMonthDate = canSelect
         return self
     }
     
-    public func enableCustomizeDateView(_ isEnable: Bool) -> CalendarConfigBuilder {
-        calendarConfig.isCustomizeDateView = isEnable
+    public func setCustomGesture(_ gestures: [GestureType]) -> CalendarConfigBuilder {
+        calendarConfig.month.gestures = gestures
         return self
     }
     
-    public func enableSelectDateOfDifferentMonth(_ isEnable: Bool) -> CalendarConfigBuilder {
-        calendarConfig.canSelectedDifferrentMonthDate = isEnable
-        return self
-    }
-    
-    public func setTimeForAnimateDetailView(_ interval: TimeInterval) -> CalendarConfigBuilder {
-        calendarConfig.timeAnimateDetailView = interval
+    public func showWeekdayView(_ isShowing: Bool) -> CalendarConfigBuilder {
+        calendarConfig.calendar.isShowWeekDayView = isShowing
         return self
     }
     
     public func setStartDayOfWeek(_ weekDay: WeekDay) -> CalendarConfigBuilder {
-        calendarConfig.startDayOfWeek = weekDay
+        calendarConfig.week.startDayOfWeek = weekDay
         return self
     }
     
     public func setWeekViewHeight(_ height: CGFloat) -> CalendarConfigBuilder {
-        calendarConfig.weekDayStackViewHeight = height
+        calendarConfig.week.weekdayViewHeight = height
         return self
     }
     

@@ -9,34 +9,31 @@ import UIKit
 
 public class CalendarConfig {
     
-    var isDrawSelectedView: Bool
+    var calendar: Calendar = Calendar()
     
-    var isDrawEventView: Bool
-        
-    var isDrawWeekDayView: Bool
+    var month: Month = Month()
     
-    var isCustomizeDateView: Bool
+    var week: Week = Week()
     
-    var isCustomizeSelectedDateView: Bool
+}
+
+extension CalendarConfig {
     
-    var canSelectedDifferrentMonthDate: Bool
+    public struct Calendar {
+        var isShowWeekDayView: Bool = true
+    }
     
-    var timeAnimateDetailView: TimeInterval
+    public struct Month {
+        var gestures: [GestureType] = [.tap]
+        var isCustomizeDateView: Bool = false
+        var isShowSelectedView: Bool = true
+        var isCustomizeSelectedDateView: Bool = false
+        var canSelectedDifferrentMonthDate: Bool = false
+    }
     
-    var startDayOfWeek: WeekDay
-    
-    var weekDayStackViewHeight: CGFloat
-    
-    init() {
-        isDrawSelectedView = true
-        isDrawEventView = true
-        isDrawWeekDayView = true
-        isCustomizeDateView = false
-        isCustomizeSelectedDateView = false
-        canSelectedDifferrentMonthDate = true
-        timeAnimateDetailView = 0.5
-        startDayOfWeek = .mon
-        weekDayStackViewHeight = CalendarDefaultConfig.weekDayStackViewHeight
+    public struct Week {
+        var startDayOfWeek: WeekDay = .mon
+        var weekdayViewHeight: CGFloat = CalendarDefaultConfig.weekDayStackViewHeight
     }
     
 }

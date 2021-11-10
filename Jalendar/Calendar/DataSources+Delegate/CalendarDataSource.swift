@@ -9,9 +9,9 @@ import UIKit
 
 public protocol CalendarDataSource {
     
-    func weekDayStrings() -> [String]
-    
-    func weekDayView(at index: Int, title: String) -> UIView
+    func heightForWeekDayView() -> UIView
+        
+    func weekDayView(at index: Int, rect: CGRect) -> UIView
     
     func dateView(for index: ItemViewIndex, date: Date, rect: CGRect) -> UIView
     
