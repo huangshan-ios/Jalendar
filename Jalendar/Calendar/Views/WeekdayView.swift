@@ -22,14 +22,14 @@ open class WeekdayView: UIView {
     private var config: CalendarConfig.Week = CalendarConfig.Week()
     
     private var isDrawWeekday: Bool = false
-    private var isRefreshWeekday: Bool = false
+    private var isRedrawWeekView: Bool = false
     
     var onGetWeekdayView: ((Int, CGSize) -> UIView)?
     
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        guard !isDrawWeekday || isRefreshWeekday else {
+        guard !isDrawWeekday || isRedrawWeekView else {
             return
         }
         
@@ -50,14 +50,16 @@ open class WeekdayView: UIView {
         
     }
     
-    public func refreshWeekViewView() {
+    public func redrawWeekViewView() {
         
-        isRefreshWeekday = true
+        isRedrawWeekView = true
+        
         setNeedsDisplay()
         
     }
     
     private func setupStackView() {
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
         
@@ -67,27 +69,33 @@ open class WeekdayView: UIView {
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
         ])
+        
     }
     
     private func drawWeekDays() {
+        
         guard subviews.contains(stackView) else {
             return
         }
         
         var index = config.startDayOfWeek.rawValue - 1
         let size = CGSize(width: stackView.frame.size.width / 7, height: stackView.frame.size.height)
+        
         while stackView.arrangedSubviews.count < 7 {
             if let weekDayView = onGetWeekdayView?(index, size) {
                 stackView.addArrangedSubview(weekDayView)
             }
             index = index == (WeekDay.allCases.count - 1) ? 0 : index + 1
         }
+        
     }
     
     private func removeAllContentView() {
+        
         stackView.arrangedSubviews.forEach { subview in
             subview.removeFromSuperview()
         }
+        
     }
     
 }

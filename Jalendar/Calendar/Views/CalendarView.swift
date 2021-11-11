@@ -39,29 +39,47 @@ open class CalendarView: UIView {
     }
     
     public func refreshCalendar() {
-        refreshUI()
+        
+        guard let referenceDate = referenceDate else {
+            return
+        }
+        
+        if config.calendar.isShowWeekDayView {
+            weekdayView.redrawWeekViewView()
+        }
+        
+        monthView.redrawMonthView(referenceDate)
+        
     }
     
     public func nextMonth() {
+        
         guard let nextMonth = referenceDate?.nextMonth else {
             return
         }
+        
         referenceDate = nextMonth
-        monthView.refreshMonthView(nextMonth)
+        monthView.redrawMonthView(nextMonth, isRedraw: true)
+        
     }
     
     public func previousMonth() {
+        
         guard let previousMonth = referenceDate?.previousMonth else {
             return
         }
+        
         referenceDate = previousMonth
-        monthView.refreshMonthView(previousMonth)
+        monthView.redrawMonthView(previousMonth, isRedraw: true)
+        
     }
     
     private func removeAllContentView() {
+        
         subviews.forEach { subview in
             subview.removeFromSuperview()
         }
+        
     }
 
 }
@@ -125,20 +143,6 @@ extension CalendarView {
         }
         
         monthView.drawMonthView(with: referenceDate, and: config)
-        
-    }
-    
-    private func refreshUI() {
-        
-        guard let referenceDate = referenceDate else {
-            return
-        }
-        
-        if config.calendar.isShowWeekDayView {
-            weekdayView.refreshWeekViewView()
-        }
-        
-        monthView.refreshMonthView(referenceDate)
         
     }
 }

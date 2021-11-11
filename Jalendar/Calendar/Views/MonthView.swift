@@ -41,7 +41,7 @@ open class MonthView: UIView {
     private var config: CalendarConfig.Month = CalendarConfig.Month()
     
     private var isDrawCalendar: Bool = false
-    private var isRefreshCalendar: Bool = false
+    private var isRedrawMonthView: Bool = false
     
     private let borderTwoSideWidth: CGFloat = CalendarDefaultConfig.separatorLineWidth * 2
     private var dateViewWidth: CGFloat = 0.0
@@ -72,11 +72,11 @@ open class MonthView: UIView {
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        if allDateInMonth.count > 0 && (!isDrawCalendar || isRefreshCalendar) {
+        if allDateInMonth.count > 0 && (!isDrawCalendar || isRedrawMonthView) {
             
             isDrawCalendar = true
             
-            isRefreshCalendar = false
+            isRedrawMonthView = false
             
             removeAllContentView()
             
@@ -96,6 +96,7 @@ extension MonthView {
                               and calendarConfig: CalendarConfig) {
         
         config = calendarConfig.month
+        
         startDayOfWeek = calendarConfig.week.startDayOfWeek.rawValue
         
         addUserGesture()
@@ -104,18 +105,22 @@ extension MonthView {
         
     }
     
-    public func refreshMonthView(_ date: Date) {
+    public func redrawMonthView(_ date: Date, isRedraw: Bool = false) {
         
-        isRefreshCalendar = true
+        if isRedraw {
+            selectedIndex = nil
+        }
+        
+        isRedrawMonthView = true
         
         drawMonthView(with: date)
         
     }
     
-    private func drawMonthView(with referenceDate: Date) {
+    private func drawMonthView(with date: Date) {
         
-        self.referenceDate = referenceDate
-        
+        referenceDate = date
+                
         setNeedsDisplay()
         
     }
