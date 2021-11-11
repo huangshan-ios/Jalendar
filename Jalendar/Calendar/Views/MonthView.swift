@@ -7,8 +7,6 @@
 
 import UIKit
 
-typealias MonthViewGestureResponse = (Date, ItemViewIndex, CGPoint)
-
 public enum GestureType {
     case tap
     case doubleTap
@@ -62,9 +60,9 @@ open class MonthView: UIView {
     
     private var selectedIndex: ItemViewIndex?
     
-    var onTap: ((MonthViewGestureResponse) -> Void)?
-    var onDoubleTap: ((MonthViewGestureResponse) -> Void)?
-    var onLongPress: ((MonthViewGestureResponse) -> Void)?
+    var onTap: ((Date, ItemViewIndex, CGPoint) -> Void)?
+    var onDoubleTap: ((Date, ItemViewIndex, CGPoint) -> Void)?
+    var onLongPress: ((Date, ItemViewIndex, CGPoint) -> Void)?
     
     var onGetDateView: ((ItemViewIndex, Date, CGRect) -> UIView?)?
     var onGetSelectedDateView: ((CGRect) -> UIView?)?
@@ -95,8 +93,7 @@ extension MonthView {
     public func drawMonthView(with referenceDate: Date,
                               and monthConfig: CalendarConfig.Month) {
         
-        self.config = monthConfig
-        self.referenceDate = referenceDate
+        config = monthConfig
         
         addUserGesture()
         
@@ -104,19 +101,20 @@ extension MonthView {
         
     }
     
-    public func refreshMonthView() {
-        guard let referenceDate = referenceDate else {
-            print("Need set the reference date to refresh the calendar")
-            return
-        }
+    public func refreshMonthView(_ date: Date) {
         
         isRefreshCalendar = true
-        drawMonthView(with: referenceDate)
+        
+        drawMonthView(with: date)
+        
     }
     
     private func drawMonthView(with referenceDate: Date) {
+        
         self.referenceDate = referenceDate
+        
         setNeedsDisplay()
+        
     }
     
 }
@@ -219,7 +217,7 @@ extension MonthView {
         let selectedDate = getDate(at: location.index)
         if isIndexValid(location.index) {
             drawSelectedDateView(byLocation: location.point)
-            onTap?((selectedDate, location.index, location.point))
+            onTap?(selectedDate, location.index, location.point)
             selectedIndex = location.index
         }
     }
@@ -227,14 +225,14 @@ extension MonthView {
     @objc private func doubleTapHandler(_ sender: UITapGestureRecognizer) {
         let location = getGestureLocation(atPoint: sender.location(in: sender.view))
         if isIndexValid(location.index) {
-            onDoubleTap?((getDate(at: location.index), location.index, location.point))
+            onDoubleTap?(getDate(at: location.index), location.index, location.point)
         }
     }
     
     @objc private func longPressHandler(_ sender: UILongPressGestureRecognizer) {
         let location = getGestureLocation(atPoint: sender.location(in: sender.view))
         if isIndexValid(location.index) {
-            onLongPress?((getDate(at: location.index), location.index, location.point))
+            onLongPress?(getDate(at: location.index), location.index, location.point)
         }
     }
 }
@@ -243,7 +241,7 @@ extension MonthView {
 // MARK: - Utilities Functions
 extension MonthView {
     private func removeAllContentView() {
-        self.subviews.forEach { subview in
+        subviews.forEach { subview in
             subview.removeFromSuperview()
         }
     }
