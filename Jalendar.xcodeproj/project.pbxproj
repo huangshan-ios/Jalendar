@@ -199,8 +199,8 @@
 		F75E8961273843330065B07B /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				F75E89652738439E0065B07B /* CalendarConfig.swift */,
 				F75E8969273847180065B07B /* CalendarConfigBuilder.swift */,
+				F75E89652738439E0065B07B /* CalendarConfig.swift */,
 				F75E896B273848250065B07B /* CalendarDefaultConfig.swift */,
 			);
 			path = Config;

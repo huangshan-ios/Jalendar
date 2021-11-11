@@ -42,6 +42,14 @@ class ViewController: UIViewController {
         }, completion: nil)
     }
     
+    @IBAction func nextButtonAction(_ sender: Any) {
+        calendarView.nextMonth()
+    }
+    
+    @IBAction func previousButtonAction(_ sender: Any) {
+        calendarView.previousMonth()
+    }
+    
 }
 
 extension ViewController: CalendarDataSource, CalendarDelegate {

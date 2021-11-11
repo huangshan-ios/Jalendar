@@ -17,17 +17,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU5-VN-YNL" customClass="CalendarView" customModule="Jalendar">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="16" y="60" width="382" height="740"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwe-92-jPd">
+                                <rect key="frame" x="366" y="816" width="32" height="30"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bIY-ef-1Dg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asJ-1Q-61I">
+                                <rect key="frame" x="16" y="816" width="59" height="30"/>
+                                <state key="normal" title="Previous"/>
+                                <connections>
+                                    <action selector="previousButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vuR-xj-69i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eU5-VN-YNL" secondAttribute="trailing" id="969-zO-GXX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eU5-VN-YNL" secondAttribute="bottom" id="DpS-gk-FEH"/>
-                            <constraint firstItem="eU5-VN-YNL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tQD-tN-pPb"/>
-                            <constraint firstItem="eU5-VN-YNL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="wcn-wN-nFX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="asJ-1Q-61I" secondAttribute="bottom" constant="16" id="1yb-hM-1cG"/>
+                            <constraint firstItem="asJ-1Q-61I" firstAttribute="top" secondItem="eU5-VN-YNL" secondAttribute="bottom" constant="16" id="4CC-5R-ln2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eU5-VN-YNL" secondAttribute="trailing" constant="16" id="969-zO-GXX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vwe-92-jPd" secondAttribute="bottom" constant="16" id="CPp-Ko-3WF"/>
+                            <constraint firstItem="asJ-1Q-61I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="L1l-uN-A41"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vwe-92-jPd" secondAttribute="trailing" constant="16" id="RBX-Gi-zDG"/>
+                            <constraint firstItem="eU5-VN-YNL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="tQD-tN-pPb"/>
+                            <constraint firstItem="eU5-VN-YNL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="wcn-wN-nFX"/>
                         </constraints>
                     </view>
                     <connections>
@@ -36,7 +54,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="122" y="118"/>
+            <point key="canvasLocation" x="121.73913043478262" y="117.85714285714285"/>
         </scene>
     </scenes>
     <resources>
