@@ -12,8 +12,10 @@ open class WeekdayView: UIView {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [])
         stackView.spacing = 0
+        stackView.alignment = .fill
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
+        stackView.backgroundColor = .clear
         return stackView
     }()
     
@@ -31,20 +33,28 @@ open class WeekdayView: UIView {
             return
         }
         
+        isDrawWeekday = true
+        
         removeAllContentView()
+        
+        setupStackView()
         
         drawWeekDays()
     }
     
     public func drawWeekdayView(with weekConfig: CalendarConfig.Week) {
+        
         config = weekConfig
         
         setNeedsDisplay()
+        
     }
     
     public func refreshWeekViewView() {
+        
         isRefreshWeekday = true
         setNeedsDisplay()
+        
     }
     
     private func setupStackView() {

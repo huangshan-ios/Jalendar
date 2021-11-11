@@ -33,7 +33,6 @@ extension CalendarConfig {
     
     public struct Week {
         var startDayOfWeek: WeekDay = .mon
-        var weekdayViewHeight: CGFloat = CalendarDefaultConfig.weekDayStackViewHeight
     }
     
 }

@@ -124,7 +124,7 @@ extension CalendarView {
             weekdayView.drawWeekdayView(with: config.week)
         }
         
-        monthView.drawMonthView(with: referenceDate, and: config.month)
+        monthView.drawMonthView(with: referenceDate, and: config)
         
     }
     

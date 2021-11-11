@@ -22,9 +22,7 @@ public protocol ConfigBuilder {
     func showWeekdayView(_ isShowing: Bool) -> CalendarConfigBuilder
     
     func setStartDayOfWeek(_ weekDay: WeekDay) -> CalendarConfigBuilder
-    
-    func setWeekViewHeight(_ height: CGFloat) -> CalendarConfigBuilder
-    
+        
     func build() -> CalendarConfig
     
 }
@@ -69,11 +67,6 @@ public class CalendarConfigBuilder: ConfigBuilder {
     
     public func setStartDayOfWeek(_ weekDay: WeekDay) -> CalendarConfigBuilder {
         calendarConfig.week.startDayOfWeek = weekDay
-        return self
-    }
-    
-    public func setWeekViewHeight(_ height: CGFloat) -> CalendarConfigBuilder {
-        calendarConfig.week.weekdayViewHeight = height
         return self
     }
     

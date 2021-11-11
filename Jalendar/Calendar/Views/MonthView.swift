@@ -48,13 +48,15 @@ open class MonthView: UIView {
     private var dateViewHeight: CGFloat = 0.0
     
     private var allDateInMonth: DatesInMonth {
-        guard let _ = referenceDate else {
+        guard let referenceDate = referenceDate else {
             print("Need set the reference date to draw the calendar")
             return []
         }
-        return []
+        return CalendarHelper.getAllDateInMonth(from: referenceDate.startOfMonth, to: referenceDate.endOfMonth,
+                                                startDayOfWeek: startDayOfWeek)
     }
     private var referenceDate: Date? = Date()
+    private var startDayOfWeek: Int = 0
     
     private var selectedDateView = UIView()
     
@@ -91,9 +93,10 @@ open class MonthView: UIView {
 extension MonthView {
     
     public func drawMonthView(with referenceDate: Date,
-                              and monthConfig: CalendarConfig.Month) {
+                              and calendarConfig: CalendarConfig) {
         
-        config = monthConfig
+        config = calendarConfig.month
+        startDayOfWeek = calendarConfig.week.startDayOfWeek.rawValue
         
         addUserGesture()
         
@@ -225,14 +228,18 @@ extension MonthView {
     @objc private func doubleTapHandler(_ sender: UITapGestureRecognizer) {
         let location = getGestureLocation(atPoint: sender.location(in: sender.view))
         if isIndexValid(location.index) {
+            drawSelectedDateView(byLocation: location.point)
             onDoubleTap?(getDate(at: location.index), location.index, location.point)
+            selectedIndex = location.index
         }
     }
     
     @objc private func longPressHandler(_ sender: UILongPressGestureRecognizer) {
         let location = getGestureLocation(atPoint: sender.location(in: sender.view))
         if isIndexValid(location.index) {
+            drawSelectedDateView(byLocation: location.point)
             onLongPress?(getDate(at: location.index), location.index, location.point)
+            selectedIndex = location.index
         }
     }
 }

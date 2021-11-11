@@ -17,7 +17,7 @@ public protocol CalendarDelegate {
     
 }
 
-extension CalendarDelegate {
+public extension CalendarDelegate {
     
     func tap(at date: Date, index: ItemViewIndex, point: CGPoint) {}
     
