@@ -117,6 +117,18 @@ extension MonthView {
         
     }
     
+    public func setSelectedDate(_ date: Date) {
+        
+        guard let index = getViewIndex(at: date) else {
+            return
+        }
+        
+        selectedIndex = index
+        
+        drawSelectedDateView()
+        
+    }
+    
     private func drawMonthView(with date: Date) {
         
         referenceDate = date

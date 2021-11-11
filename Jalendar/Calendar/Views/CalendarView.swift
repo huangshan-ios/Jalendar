@@ -74,6 +74,10 @@ open class CalendarView: UIView {
         
     }
     
+    public func setSelectedDate(_ date: Date) {
+        monthView.setSelectedDate(date)
+    }
+    
     private func removeAllContentView() {
         
         subviews.forEach { subview in
