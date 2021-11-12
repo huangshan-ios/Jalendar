@@ -22,7 +22,7 @@ Updating....
 
 1、 Drag an UIView object to ViewController Scene<br/>
 2、 Change the `Custom Class` to `CalendarView`<br/>
-3、 Link `dataSource` and `delegate` to the ViewController<br/>
+3、 Add `CalendarConfig` for Calendar, link `dataSource` and `delegate` to the ViewController<br/>
 4、 Implement `CalendarDataSource` and `CalendarDelegate` in your `ViewController`<br/>
 5、 Calls the `drawCalendar(with calendarConfig: CalendarConfig, at date: Date)` to draw the Calendar
 
@@ -38,7 +38,7 @@ calendar.dataSource = self
 calendar.delegate = self
 view.addSubview(calendar)
 self.calendar = calendar
-self.calendar.drawCalendar(with: calendarConfig, at: Date())
+self.calendar.drawCalendar(with: CalendarConfigBuilder.makeBuilder().build(), at: Date())
 ```
 
 > To use **Jalendar** see `Example` for details.
