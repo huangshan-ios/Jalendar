@@ -75,7 +75,14 @@ open class CalendarView: UIView {
     }
     
     public func setSelectedDate(_ date: Date) {
+        
         monthView.setSelectedDate(date)
+    }
+    
+    public func getDateView(_ index: ItemViewIndex) -> UIView? {
+        
+        return monthView.getDateView(at: index)
+        
     }
     
     private func removeAllContentView() {

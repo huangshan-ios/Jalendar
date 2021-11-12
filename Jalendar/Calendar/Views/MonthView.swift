@@ -80,7 +80,7 @@ open class MonthView: UIView {
             
             removeAllContentView()
             
-            drawDateView(in: rect)
+            drawDateView()
             
             drawSelectedDateView()
             
@@ -129,10 +129,20 @@ extension MonthView {
         
     }
     
+    public func getDateView(at index: ItemViewIndex) -> UIView? {
+        
+        return subviews.first { view in
+            
+            return view.tag == Int(index.x + (index.y * CGFloat(7)))
+            
+        }
+        
+    }
+    
     private func drawMonthView(with date: Date) {
         
         referenceDate = date
-                
+        
         setNeedsDisplay()
         
     }
@@ -141,40 +151,50 @@ extension MonthView {
 
 // MARK: - Date View
 extension MonthView {
-    private func drawDateView(in rect: CGRect) {
+    private func drawDateView() {
+        
         let dateInMonth = allDateInMonth
         let weekCount = dateInMonth.count
         let daysInWeek = dateInMonth.first?.count ?? 0
         let separatorLineWidth = CalendarDefaultConfig.separatorLineWidth
         
-        dateViewWidth = (rect.width / CGFloat(daysInWeek)) - borderTwoSideWidth
-        dateViewHeight = (rect.height / CGFloat(weekCount)) - borderTwoSideWidth
+        dateViewWidth = (frame.width / CGFloat(daysInWeek)) - borderTwoSideWidth
+        dateViewHeight = (frame.height / CGFloat(weekCount)) - borderTwoSideWidth
         
-        var viewPoint = CGPoint(x: rect.origin.x + separatorLineWidth, y: rect.origin.y + separatorLineWidth)
+        var viewPoint = CGPoint(x: frame.origin.x + separatorLineWidth, y: frame.origin.y + separatorLineWidth)
         
-        for (weakIndex, week) in dateInMonth.enumerated() {
-            for (dayIndex, date) in week.enumerated() {
+        dateInMonth.enumerated()
+            .forEach({ (weekIndex, week) in
                 
-                let xPoint = rect.width / CGFloat(daysInWeek)
-                let yPoint = rect.height / CGFloat(weekCount)
-                let xPos = (xPoint * CGFloat(dayIndex)) + separatorLineWidth
-                let yPos = (yPoint * CGFloat(weakIndex)) + separatorLineWidth
+                week.enumerated().forEach { (dateIndex, date) in
+                    
+                    let xPoint = frame.width / CGFloat(daysInWeek)
+                    let yPoint = frame.height / CGFloat(weekCount)
+                    let xPos = (xPoint * CGFloat(dateIndex)) + separatorLineWidth
+                    let yPos = (yPoint * CGFloat(weekIndex)) + separatorLineWidth
+                    
+                    viewPoint = CGPoint(x: xPos, y: yPos)
+                    
+                    let dateViewRect = CGRect(origin: viewPoint, size: CGSize(width: dateViewWidth, height: dateViewHeight))
+                    let dateView = getDateView(from: date, bound: dateViewRect)
+                    dateView.tag = (weekIndex * 7) + dateIndex
+
+                    addSubview(dateView)
+                    
+                }
                 
-                viewPoint = CGPoint(x: xPos, y: yPos)
-                
-                let dateViewRect = CGRect(origin: viewPoint, size: CGSize(width: dateViewWidth, height: dateViewHeight))
-                addSubview(getDateView(from: date, bound: dateViewRect))
-                
-            }
-        }
+            })
+        
     }
     
     private func getDateView(from date: Date, bound: CGRect) -> UIView {
+        
         guard config.isCustomizeDateView, let viewIndex = getViewIndex(at: date) else {
             return UIView(frame: bound)
         }
         
         return onGetDateView?(viewIndex, date, bound) ?? UIView()
+        
     }
 }
 
