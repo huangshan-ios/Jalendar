@@ -8,6 +8,35 @@
 import UIKit
 
 extension UIView {
+    
+    @IBInspectable var viewBorderColor: UIColor? {
+        get {
+            return layer.borderColor.map { UIColor(cgColor: $0) }
+        }
+        set {
+            layer.borderColor = newValue?.cgColor
+        }
+    }
+    
+    @IBInspectable var viewBorderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+    
+    @IBInspectable var viewCornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+    
     public class func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: nil)
     }

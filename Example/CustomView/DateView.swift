@@ -12,7 +12,6 @@ class DateView: UIView {
 
     @IBOutlet var containerView: UIView!
     @IBOutlet weak var dateTitleLabel: UILabel!
-    @IBOutlet weak var rokkiDateTitleLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
